@@ -7,3 +7,10 @@ class Video(models.Model):
 
     def __str__(self):
         return self.title
+
+
+
+class TitleSubtitleModel(models.Model):
+    title = models.CharField(max_length=300)
+    sub_title = models.CharField(max_length=500)
+    updated_at = models.DateTimeField(auto_now_add=True)

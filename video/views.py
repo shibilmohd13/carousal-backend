@@ -1,12 +1,12 @@
-from rest_framework import status
+from rest_framework import status ,viewsets
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate
-from .models import Video
-from .serializers import VideoSerializer, UserLoginSerializer
+from .models import Video , TitleSubtitleModel
+from .serializers import VideoSerializer, UserLoginSerializer ,TitleSubtitleModelSerializer
 
 class LoginView(APIView):
     def post(self, request):
@@ -46,3 +46,9 @@ def show_all_videos(request):
     videos = Video.objects.all()
     serializer = VideoSerializer(videos, many=True)
     return Response(serializer.data)
+
+
+
+class TitleSubtitleModelViewSet(viewsets.ModelViewSet):
+    queryset = TitleSubtitleModel.objects.all()
+    serializer_class = TitleSubtitleModelSerializer
