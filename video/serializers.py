@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Video
+from . models import TitleSubtitleModel
 from django.contrib.auth import authenticate
 
 class VideoSerializer(serializers.ModelSerializer):
@@ -25,3 +26,9 @@ class UserLoginSerializer(serializers.Serializer):
             raise serializers.ValidationError("Please provide both username and password.")
         
         return data
+    
+
+class TitleSubtitleModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TitleSubtitleModel
+        fields = '__all__'
